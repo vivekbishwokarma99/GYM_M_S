@@ -43,4 +43,24 @@ class Client_Information():
                     except IndexError:
                             pass
 
-                
+                def Add():
+                    if(len(self.name.get()) !=0):
+                        Client_info_Back_End.insert(self.name.get(),
+                                                    self.address.get(),
+                                                    self.mobile_number.get(),
+                                                    self.email_address.get(),
+                                                    self.date_of_birth.get(),
+                                                    self.gender.get())
+                        self.listbox.delete(0, END)
+                        self.listbox.insert(END, self.name.get(),
+                                                 self.address.get(),
+                                                 self.mobile_number.get(),
+                                                 self.email_address.get(),
+                                                 self.date_of_birth.get(),
+                                                 self.gender.get())
+
+
+
+
+
+
