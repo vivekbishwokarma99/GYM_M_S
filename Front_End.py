@@ -1,3 +1,4 @@
+import tkinter
 from tkinter import *
 from tkinter import messagebox
 import random
@@ -43,21 +44,63 @@ class Client_Information():
                     except IndexError:
                             pass
 
+
                 def Add():
                     if(len(self.name.get()) !=0):
-                        Client_info_Back_End.insert(self.name.get(),
+                        Client_Info_Back_End.insert(self.name.get(),
                                                     self.address.get(),
                                                     self.mobile_number.get(),
                                                     self.email_address.get(),
                                                     self.date_of_birth.get(),
                                                     self.gender.get())
                         self.listbox.delete(0, END)
-                        self.listbox.insert(END, self.name.get(),
-                                                 self.address.get(),
-                                                 self.mobile_number.get(),
-                                                 self.email_address.get(),
-                                                 self.date_of_birth.get(),
-                                                 self.gender.get())
+                        self.listbox.insert(END, (self.name.get(),
+                                                    self.address.get(),
+                                                    self.mobile_number.get(),
+                                                    self.email_address.get(),
+                                                    self.date_of_birth.get(),
+                                                    self.gender.get()))
+
+
+                def Display():
+                        self.listbox.delete(0, END)
+                        for row in Client_Info_Back_End.view():
+                            self.listbox.insert(END, row, str(' '))
+
+
+                def Exit():
+                        Exit = tkinter.messagebox.askyesno("Login System", "Confirm if you want to Exit")
+                        if Exit <=0:
+                            self.master.destroy()
+                            return
+
+
+                def Delete():
+                    if(len(self.name.get()) !=0):
+                        Client_Info_Back_End.delete(selected_tuple[0])
+                        Display()
+
+
+                def Update():
+                    if(len(self.name.get()) !=0):
+                        Client_Info_Back_End.delete(selected_tuple[0])
+                    if (len(self.name.get()) != 0):
+                        Client_Info_Back_End.insert(self.name.get(),
+                                                    self.address.get(),
+                                                    self.mobile_number.get(),
+                                                    self.email_address.get(),
+                                                    self.date_of_birth.get(),
+                                                    self.gender.get())
+
+                        self.listbox.delete(0, END)
+                        self.listbox.insert(END,   (self.name.get(),
+                                                    self.address.get(),
+                                                    self.mobile_number.get(),
+                                                    self.email_address.get(),
+                                                    self.date_of_birth.get(),
+                                                    self.gender.get()))
+
+
 
 
 
